@@ -1,3 +1,6 @@
-<h5 [ngStyle]="{ backgroundColor: getColor() }">
+<h5
+  [ngStyle]="{ backgroundColor: getColor() }"
+  [ngClass]="{ online: status === 'online' }"
+>
   Server component - id: {{ id }} - status: {{ getStatus() }}
 </h5>

@@ -1,3 +1,12 @@
 h5 {
   color: rgb(0, 48, 48);
+  font-size: 1em;
+  padding: 5px 10px;
+  border-radius: 2.5px;
+  border: 1px solid rgba(255, 0, 0, 0.733);
+}
+
+.online {
+  color: white;
+  border: 1px solid rgba(4, 180, 4, 0.856);
 }

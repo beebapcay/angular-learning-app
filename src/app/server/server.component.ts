@@ -20,6 +20,8 @@ export class ServerComponent {
   }
 
   getColor() {
-    return this.status === 'online' ? 'green' : 'red';
+    return this.status === 'online'
+      ? 'lightgreen'
+      : 'rgba(253, 117, 83, 0.616)';
   }
 }
