@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingListService {
+  ingredientsChanged = new EventEmitter<Ingredient[]>();
   private ingredients: Ingredient[] = [
     new Ingredient('Apples', 5),
     new Ingredient('Tomatoes', 10),
@@ -17,6 +18,22 @@ export class ShoppingListService {
   }
 
   onIngredientAdded(ing: Ingredient) {
-    this.ingredients.push(ing);
+    if (this.ingredients.find((i) => i.name === ing.name)) {
+      this.ingredients.find((i) => i.name === ing.name).amount += ing.amount;
+    } else {
+      this.ingredients.push(ing);
+    }
+    this.ingredientsChanged.emit(this.getIngredients());
+  }
+
+  addIngredients(ingredients: Ingredient[]) {
+    ingredients.forEach((ing) => {
+      if (this.ingredients.find((i) => i.name === ing.name)) {
+        this.ingredients.find((i) => i.name === ing.name).amount += ing.amount;
+      } else {
+        this.ingredients.push(ing);
+      }
+    });
+    this.ingredientsChanged.emit(this.getIngredients());
   }
 }
